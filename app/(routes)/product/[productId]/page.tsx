@@ -6,15 +6,14 @@ import Gallery from "@/components/gallery";
 import Info from "@/components/info";
 
 interface ProductPageProps {
-  params: {
-    productId: string;
-  } & Promise<any>;
+    params: Promise<{ productId: string }>;
 }
 
 const ProductPage: React.FC<ProductPageProps> = async ({
   params
 }) => {
-  const product = await getProduct(params.productId)
+  const resolvedParams = await params;
+  const product = await getProduct(resolvedParams.productId)
   const suggestedProducts = await getProducts({
     categoryId: product?.category?.id
   })

@@ -10,9 +10,7 @@ import ProductCard from "@/components/ui/product-card";
 import MobileFilters from "./components/mobile-filters";
 
 interface CategoryPageProps {
-  params: {
-    categoryId: string;
-  } & Promise<any>,
+  params: Promise<{ categoryId: string }>;
   searchParams: {
     colorId: string;
     sizeId: string;
@@ -23,14 +21,15 @@ const CategoryPage: React.FC<CategoryPageProps> = async ({
   params,
   searchParams,
 }) => {
+  const resolvedParams = await params;
   const products = await getProducts({
-    categoryId: params.categoryId,
+    categoryId: resolvedParams.categoryId,
     colorId: searchParams.colorId,
     sizeId: searchParams.sizeId,
   })
   const sizes = await getSizes();
   const colors = await getColors();
-  const category = await getCategory(params.categoryId);
+  const category = await getCategory(resolvedParams.categoryId);
   return (
     <div className="bg-white">
       <Container>
