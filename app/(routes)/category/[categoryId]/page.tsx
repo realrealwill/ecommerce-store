@@ -12,7 +12,7 @@ import MobileFilters from "./components/mobile-filters";
 interface CategoryPageProps {
   params: {
     categoryId: string;
-  },
+  } & Promise<any>,
   searchParams: {
     colorId: string;
     sizeId: string;
