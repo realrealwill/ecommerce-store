@@ -1,7 +1,7 @@
-import {forwardRef} from "react";
-import {cn} from "@/lib/utils";
+import { forwardRef, type ComponentPropsWithoutRef } from "react";
+import { cn } from "@/lib/utils";
 
-export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
+export type ButtonProps = ComponentPropsWithoutRef<"button">;
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
   className,
@@ -16,14 +16,14 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
       w-auto
       rounded-full
       bg-black
-      border-tranparent
+      border-transparent
       px-5
       py-3
       disabled:cursor-not-allowed
       disabled:opacity-50
       text-white
       font-semibold
-      hover: opacity-75
+      hover:opacity-75
       transition
       `,
       className
